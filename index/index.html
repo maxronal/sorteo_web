@@ -146,6 +146,12 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.6s ease-out forwards;
+            outline: none;
+        }
+
+        .whatsapp-button:focus {
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.3), 0 4px 15px rgba(37, 211, 102, 0.4);
+            transform: translateY(-2px);
         }
 
         .whatsapp-button:hover {
@@ -204,7 +210,7 @@
         <p class="subtitle">Ingresa tu nombre para verificar si eres el ganador</p>
         
         <div class="input-group">
-            <label class="input-label" for="nameInput">Tu primer nombre:</label>
+            <label class="input-label" for="nameInput">Tu primer nombre es:</label>
             <input type="text" id="nameInput" class="name-input" placeholder="Escribe tu nombre aquí..." autocomplete="off">
         </div>
         
@@ -215,14 +221,14 @@
         <div id="result" class="result"></div>
         
         <div class="winner-names">
-            <p>💫 .... 💫</p>
+            <p>💫 ... 💫</p>
         </div>
     </div>
 
     <script>
         // Lista de nombres ganadores (puedes modificar esta lista)
         const winnerNames = [
-            'max', 'celita'
+            'max', 'celita', 'paul', 'wilder', 'junior'
         ];
 
         function createConfetti() {
@@ -267,11 +273,20 @@
                 // Agregar botón de WhatsApp después del mensaje
                 setTimeout(() => {
                     const whatsappButton = document.createElement('a');
-                    whatsappButton.href = `https://wa.me/51941436095?text=¡Hola! Soy ${nameInput.value} y acabo de verificar que soy ganador del sorteo. ¿Cómo puedo reclamar mi premio?`;
+                    whatsappButton.href = `https://wa.me/51960148663?text=¡Hola! Soy ${nameInput.value} y acabo de verificar que soy ganador del sorteo. ¿Cómo puedo reclamar mi premio?`;
                     whatsappButton.className = 'whatsapp-button';
                     whatsappButton.target = '_blank';
-                    whatsappButton.innerHTML = '📱 Contactanos por WhatsApp';
+                    whatsappButton.innerHTML = '📱 Contactar por WhatsApp';
                     result.appendChild(whatsappButton);
+                    
+                    // Hacer scroll suave hacia el botón y darle foco
+                    setTimeout(() => {
+                        whatsappButton.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        whatsappButton.focus();
+                    }, 100);
                 }, 500);
                 
             } else {
